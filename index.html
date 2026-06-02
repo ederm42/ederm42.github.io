@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=640, initial-scale=0.5">
+    <title>CV - Manuel Eder</title>
+    <!-- 1. Add Matter.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <style>
+        /* --- Embedded Theme Definitions --- */
+        :root, [data-theme="amber"] {
+            --theme-bg: #121212;
+            --theme-panel: #1a1a1a;
+            --theme-amber: #ffb000;
+            --theme-amber-dim: #8c6300;
+            --theme-border: #2a2a2a;
+            --theme-text-dark: #404040;
+            --theme-text: #b0b0b0;
+            --theme-text-bright: #e0e0e0;
+        }
+        [data-theme="obsidian"] {
+            --theme-bg: #1b0a0a;
+            --theme-panel: #2a1111;
+            --theme-amber: #ff6a00;
+            --theme-amber-dim: #a83a00;
+            --theme-border: #3d1414;
+            --theme-text-dark: #572222;
+            --theme-text: #ff8866;
+            --theme-text-bright: #ff3c00;
+        }
+        [data-theme="olive"] {
+            --theme-bg: #12120f;
+            --theme-panel: #1c1c17;
+            --theme-amber: #e0e070;
+            --theme-amber-dim: #8a8a44;
+            --theme-border: #2a2a24;
+            --theme-text-dark: #3d3d34;
+            --theme-text: #b5b596;
+            --theme-text-bright: #d4d4b1;
+        }
+        [data-theme="navy"] {
+            --theme-bg: #1a1b26;
+            --theme-panel: #24283b;
+            --theme-amber: #7aa2f7;
+            --theme-amber-dim: #3d59a1;
+            --theme-border: #414868;
+            --theme-text-dark: #525b82;
+            --theme-text: #a9b1d6;
+            --theme-text-bright: #c0caf5;
+        }
+        [data-theme="cyber"] {
+            --theme-bg: #0f1419;
+            --theme-panel: #161f27;
+            --theme-amber: #5ccfe6;
+            --theme-amber-dim: #2a6875;
+            --theme-border: #1a2b3c;
+            --theme-text-dark: #263c54;
+            --theme-text: #5ebae6;
+            --theme-text-bright: #73d0ff;
+        }
+        [data-theme="terminal"] {
+            --theme-bg: #0a0a0a;
+            --theme-panel: #141414;
+            --theme-amber: #ffffff;
+            --theme-amber-dim: #666666;
+            --theme-border: #333333;
+            --theme-text-dark: #4d4d4d;
+            --theme-text: #c0c0c0;
+            --theme-text-bright: #e0e0e0;
+        }
+
+        /* --- Base Styles --- */
+        html {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--theme-bg);
+            transition: background-color 0.3s ease;
+        }
+        body {
+            color: var(--theme-text);
+            margin: 0;
+            padding: 40px 0;
+            transition: color 0.3s ease;
+        }
+        .container {
+            width: 640px;
+            margin: 0px auto;
+        }
+        
+        /* --- Typography & CV Styles --- */
+        h1, h2, h3 {
+            margin: 0;
+            font-weight: 600;
+        }
+        h1 {
+            color: var(--theme-amber);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        h2 {
+            color: var(--theme-amber);
+            border-bottom: 1px solid var(--theme-border);
+            padding-bottom: 5px;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        h3 {
+            color: var(--theme-text-bright);
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+        p {
+            line-height: 1.6;
+            margin: 0.5rem 0;
+        }
+        .meta {
+            font-family: ui-monospace, monospace;
+            font-size: 0.85rem;
+            color: var(--theme-amber-dim);
+            margin-bottom: 0.5rem;
+        }
+        .authors {
+            font-size: 0.9rem;
+            color: var(--theme-text-dark);
+            margin: 0.3rem 0;
+        }
+        a {
+            color: var(--theme-amber);
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 0.2rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        a:hover {
+            color: var(--theme-text-bright);
+            text-decoration: underline;
+        }
+
+        /* --- Theme Switcher Styles --- */
+        .theme-switcher {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--theme-border);
+            text-align: center;
+        }
+        .theme-switcher button {
+            background: var(--theme-panel);
+            border: 1px solid var(--theme-border);
+            color: var(--theme-text);
+            padding: 5px 10px;
+            cursor: pointer;
+            font-family: ui-monospace, monospace;
+            font-size: 12px;
+            margin: 2px;
+            transition: all 0.2s;
+        }
+        .theme-switcher button:hover {
+            border-color: var(--theme-amber);
+            color: var(--theme-amber);
+        }
+        .theme-switcher button.active {
+            background: var(--theme-amber);
+            color: var(--theme-bg);
+            border-color: var(--theme-amber);
+        }
+        
+        #btn-gravity {
+            border-color: var(--theme-amber);
+            font-weight: bold;
+            color: var(--theme-amber);
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- HEADER -->
+        <h1>Manuel Eder</h1>
+        <p>Decoding the brain. BCI & Neurotech Researcher. Finding solutions to restore speech and language for people suffering from aphasia.</p>
+
+        <!-- EXPERIENCE -->
+        <h2>Experience</h2>
+        <h3>Research & Teaching Staff (PraeDoc)</h3>
+        <p class="meta">University of Vienna, Neuroinformatics | 2025 - present</p>
+        <p>Investigating and decoding the brain at single-neuron resolution.</p>
+        <p>Microelectrode implants (Utah arrays), Brain-Computer Interfaces (BCI), aphasia patients.</p>
+
+
+        <h3>Research Assistant</h3>
+        <p class="meta">University of Vienna, Neuroinformatics | 2021 - 2025</p>
+        <p>Research on Brain-AI Interfaces (BAI) & methods to decode brain signals for EEG-based and intracortical BCIs. </p>
+
+        <h3>Junior Scientific Software Developer</h3>
+        <p class="meta">The Siesta Group | 2017 - 2021</p>
+        <p>Sleep science for pharmaceutical studies. </p>
+        <p>Polysomnography (PSG), Electroencephalography (EEG) & Actigraphy. </p>
+
+        <!-- EDUCATION -->
+        <h2>Education</h2>
+
+        <h3>M.Sc. in Medical Informatics (Dipl.-Ing.)</h3>
+        <p class="meta">Medical University of Vienna</p>
+        <p><b>Specialization:</b> Neuroinformatics</p>
+        <p>"Decoding Implanted Microelectrode Arrays for Brain-Computer Interfaces"</p>
+        
+        <h3>B.Sc. in Computer Science</h3>
+        <p class="meta">University of Vienna</p>
+        <p><b>Specialization:</b> Medical Informatics</p>
+        <p>"Adapting an Automatic Sleep Classification System to Support Scoring of Pediatric Sleep Data"</p>
+
+        <!-- PUBLICATIONS -->
+        <h2>Selected Publications</h2>
+
+        <h3>Benchmarking brain–computer interface algorithms: Riemannian approaches vs convolutional neural networks</h3>
+        <p class="meta">Journal of Neural Engineering (Vol. 21, Issue 4)</p>
+        <p class="authors">By M. Eder, J. Xu, and M. Grosse-Wentrup</p>
+        <p>A systematic evaluation comparing Riemannian decoding methods against deep convolutional neural networks (EEGNet, shallow ConvNet, and deep ConvNet) across various BCI paradigms utilizing the MOABB framework.</p>
+        <a href="https://doi.org/10.1088/1741-2552/ad6793">Read Paper (DOI: 10.1088/1741-2552/ad6793)</a>
+
+        <h3>A right-hemispheric language network at single-neuron resolution</h3>
+        <p class="meta">bioRxiv Preprint Server (Neuroscience)</p>
+        <p class="authors">By L. F. Schiffl, L. M. Held, F. Waitzmann, M. Eder, H. Chen, G. Alkan, P. Favero, A. Utzschmid, V. M. Eisenkolb, M. Grosse-Wentrup, J. Gjorgjieva, A. Wagner, J. Gempt, B. Meyer, and S. N. Jacob</p>
+        <p>Analyzing long-term, single-neuron recordings from the right hemisphere of an individual with chronic aphasia to reveal how homotopic circuits process semantic and phonological features for BCI neurorehabilitation.</p>
+        <a href="https://doi.org/10.64898/2026.03.24.713937">Read Paper (DOI: 10.64898/2026.03.24.713937)</a>
+
+        <h3>A Conversational Brain-Artificial Intelligence Interface</h3>
+        <p class="meta">arXiv Preprint Repository (Human-Computer Interaction)</p>
+        <p class="authors">By A. Meunier, M. R. Žák, L. Munz, S. Garkot, M. Eder, J. Xu, and M. Grosse-Wentrup</p>
+        <p>Introducing Brain-Artificial Intelligence Interfaces (BAIs), a new class of non-invasive BCIs that leverage pre-trained AI agents and LLMs to replace parts of the neuro-cognitive pipeline, allowing cognitively impaired users to complete complex communication tasks without generating language.</p>
+        <a href="https://doi.org/10.48550/arXiv.2402.15011">Read Paper (DOI: 10.48550/arXiv.2402.15011)</a>
+        <!-- CONTROLS -->
+        <div class="theme-switcher">
+            <div style="font-size: 10px; text-transform: uppercase; margin-bottom: 10px; color: var(--theme-amber-dim); letter-spacing: 1px;" class="no-fall">Environment Controls</div>
+            <button onclick="setTheme('amber')" id="btn-amber">Amber</button>
+            <button onclick="setTheme('obsidian')" id="btn-obsidian">Obsidian</button>
+            <button onclick="setTheme('olive')" id="btn-olive">Olive</button>
+            <button onclick="setTheme('navy')" id="btn-navy">Navy</button>
+            <button onclick="setTheme('cyber')" id="btn-cyber">Cyber</button>
+            <button onclick="setTheme('terminal')" id="btn-terminal">Terminal</button>
+            
+            <button id="btn-gravity">?</button>
+        </div>
+    </div>
+
+    <script>
+        // --- Theme Logic ---
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('archive-theme', theme);
+            
+            document.querySelectorAll('.theme-switcher button:not(#btn-gravity)').forEach(btn => {
+                btn.classList.toggle('active', btn.id === 'btn-' + theme);
+            });
+        }
+
+        const savedTheme = localStorage.getItem('archive-theme') || 'amber';
+        setTheme(savedTheme);
+
+
+        // --- Matter.js Gravity Logic ---
+        document.getElementById('btn-gravity').addEventListener('click', function() {
+            if (window.gravityRunning) return;
+            window.gravityRunning = true;
+
+            document.body.style.overflow = 'hidden';
+
+            // 1. The Word Splitter (Now targets Headers and Paragraphs)
+            const textBlocks = document.querySelectorAll('.container p, .container h1, .container h2, .container h3');
+            
+            textBlocks.forEach(block => {
+                // Read the text, split by space
+                const words = block.innerText.trim().split(/\s+/);
+                block.innerHTML = ''; // Empty the element
+                
+                words.forEach((word, index) => {
+                    const span = document.createElement('span');
+                    span.textContent = word;
+                    span.style.display = 'inline-block'; 
+                    span.classList.add('fall-word'); 
+                    
+                    block.appendChild(span);
+                    
+                    if (index < words.length - 1) {
+                        block.appendChild(document.createTextNode(' '));
+                    }
+                });
+            });
+
+            // 2. Setup Matter.js Engine
+            const Engine = Matter.Engine,
+                  Runner = Matter.Runner,
+                  Bodies = Matter.Bodies,
+                  Composite = Matter.Composite;
+
+            const engine = Engine.create();
+            
+            // Select our newly shattered words PLUS links and buttons
+            const elements = document.querySelectorAll('.fall-word, .container a, .theme-switcher button');
+            
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const ground = Bodies.rectangle(width / 2, height + 25, width, 50, { isStatic: true });
+            const leftWall = Bodies.rectangle(-25, height / 2, 50, height, { isStatic: true });
+            const rightWall = Bodies.rectangle(width + 25, height / 2, 50, height, { isStatic: true });
+            
+            Composite.add(engine.world, [ground, leftWall, rightWall]);
+
+            const domBodies = [];
+            const elementMeasurements = [];
+
+            // PHASE 1: Measure
+            elements.forEach(function(el) {
+                const rect = el.getBoundingClientRect();
+                elementMeasurements.push({
+                    el: el,
+                    rect: rect,
+                    x: rect.left + (rect.width / 2),
+                    y: rect.top + (rect.height / 2)
+                });
+            });
+
+            // PHASE 2: Apply CSS and Physics
+            elementMeasurements.forEach(function(data) {
+                const el = data.el;
+                const rect = data.rect;
+                const x = data.x;
+                const y = data.y;
+
+                const body = Bodies.rectangle(x, y, rect.width, rect.height, {
+                    restitution: 0.5, // Slightly bouncier
+                    friction: 0.1     
+                });
+                
+                el.style.width = rect.width + 'px';
+                el.style.height = rect.height + 'px';
+                el.style.margin = '0';
+                
+                el.style.position = 'fixed';
+                el.style.top = '0px';
+                el.style.left = '0px';
+                el.style.zIndex = '9999';
+                
+                el.style.transform = `translate(${x - rect.width/2}px, ${y - rect.height/2}px)`;
+
+                domBodies.push({ body: body, elem: el, width: rect.width, height: rect.height });
+                Composite.add(engine.world, body);
+            });
+
+            // 5. Start the Physics Engine
+            const runner = Runner.create();
+            Runner.run(runner, engine);
+
+            // 6. The Sync Loop
+            (function updateDOM() {
+                window.requestAnimationFrame(updateDOM);
+                
+                domBodies.forEach(function(item) {
+                    const pos = item.body.position;
+                    const angle = item.body.angle;
+                    
+                    const x = pos.x - (item.width / 2);
+                    const y = pos.y - (item.height / 2);
+                    
+                    item.elem.style.transform = `translate(${x}px, ${y}px) rotate(${angle}rad)`;
+                });
+            })();
+        });
+    </script>
+</body>
+</html>
